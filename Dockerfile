@@ -46,6 +46,7 @@ RUN \
 	gzip \
 	hostname \
         iperf3 \
+	iproute2 \
 	iputils-arping \
 	iputils-clockdiff \
 	iputils-ping \
