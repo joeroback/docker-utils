@@ -2,17 +2,17 @@ FROM debian:bookworm-slim
 
 LABEL org.opencontainers.image.source="https://github.com/joeroback/docker-utils"
 
-ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE="true"
-ENV DEBIAN_FRONTEND="noninteractive"
+ARG APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE="true"
+ARG DEBIAN_FRONTEND="noninteractive"
 
 RUN \
     apt-get update && \
     apt-get install --yes --no-install-recommends \
         locales-all
 
-ENV LC_ALL en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
+ARG LC_ALL en_US.UTF-8
+ARG LANG en_US.UTF-8
+ARG LANGUAGE en_US:en
 
 RUN \
     apt-get install --yes --no-install-recommends \
@@ -24,7 +24,7 @@ RUN \
     apt-get update && \
     apt-get dist-upgrade --yes
 
-ENV TZ="Etc/UTC"
+ARG TZ="Etc/UTC"
 
 RUN \
     apt-get install --yes --no-install-recommends \
