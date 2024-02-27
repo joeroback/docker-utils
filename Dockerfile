@@ -1,4 +1,4 @@
-FROM debian:bookworm-slim
+FROM debian:12.5-slim
 
 LABEL org.opencontainers.image.source="https://github.com/joeroback/docker-utils"
 
@@ -29,55 +29,68 @@ ARG TZ="Etc/UTC"
 RUN \
     apt-get install --yes --no-install-recommends \
         bash \
-	binutils \
-	bsdutils \
-	build-essential \
+        bind9-host \
+        binutils \
+        bsdutils \
+        build-essential \
         bzip2 \
         ca-certificates \
-	cmake \
+        cmake \
         coreutils \
         curl \
-	debianutils \
-	diffutils \
-	ethtool \
-	findutils \
-	git \
+        debianutils \
+        diffutils \
+        dos2unix \
+        ethtool \
+        findutils \
+        git \
         gnupg \
-	gzip \
-	hostname \
+        gzip \
+        hostname \
         iperf3 \
-	iproute2 \
-	iputils-arping \
-	iputils-clockdiff \
-	iputils-ping \
-	iputils-tracepath \
+        iproute2 \
+        iputils-arping \
+        iputils-clockdiff \
+        iputils-ping \
+        iputils-tracepath \
         jq \
-	lsof \
+        lsof \
         mbw \
         nano \
+        natpmpc \
+        ncat \
         neovim \
-	net-tools \
+        net-tools \
         nmap \
         openssh-client \
         openssl \
         p7zip-full \
         pbzip2 \
-	procps \
+        procps \
         pigz \
+        python3-dev \
+        python3-full \
         rsync \
         stress-ng \
         supervisor \
-	tar \
+        tar \
+        tmux \
+        traceroute \
         tzdata \
-	unrar-free \
+        unrar-free \
         unzip \
         util-linux \
-	vnstat \
-	wireguard-tools \
+        vnstat \
+        wireguard-tools \
         wget \
-	xz-utils \
+        xz-utils \
         zsh \
         zstd
+
+RUN \
+    python3 -m venv /usr/local/homelab && \
+    /usr/local/homelab/bin/pip3 install -U pip && \
+    /usr/local/homelab/bin/pip3 install ipython NAT-PMP bpytop
 
 RUN \
     curl -fsS https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | bash && \
